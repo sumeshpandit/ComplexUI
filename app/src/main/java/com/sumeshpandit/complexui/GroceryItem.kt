@@ -1,8 +1,6 @@
 package com.sumeshpandit.complexui
 
-import android.media.Rating
-
-data class GroceyItem(
+data class GroceryItem(
     val itemImageView: Int,
     val offer: String,
     val off: Int,
