@@ -21,8 +21,8 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
         data.add(GroceryItem(R.mipmap.item3, "Super sale", 23,"AASHIRWAD","potato","2kg",234,2,125))
         data.add(GroceryItem(R.mipmap.item4, "super sale", 41,"FORTUNE","Peas","10kg",231,3,923))
         data.add(GroceryItem(R.mipmap.item5, "super sale", 16,"EMAMI","Apple","1kg",201,4,87))
-        data.add(GroceryItem(R.mipmap.item4, "super sale", 17,"Rajdhani","Milk","1.5kg",534,5,453))
-        data.add(GroceryItem(R.mipmap.item4, "super sale", 65,"Fresho","Grapes","5kg",199,2,32))
+        data.add(GroceryItem(R.mipmap.item6, "super sale", 17,"Rajdhani","Milk","1.5kg",534,5,453))
+        data.add(GroceryItem(R.mipmap.item7, "super sale", 65,"Fresho","Grapes","5kg",199,2,32))
     }
 
     inner class ViewHolder(binding: ItemBinding):RecyclerView.ViewHolder(binding.root) {
