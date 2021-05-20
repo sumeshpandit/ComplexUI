@@ -36,7 +36,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20% off"
-                        android:background="#76A817"
+                        android:background="@drawable/gradient"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:visibility="gone"/>
@@ -48,12 +48,12 @@
                     android:text="offer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#95DC43"
+                    android:background="@drawable/gradient"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
