@@ -25,34 +25,43 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp">
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        app:cardCornerRadius="20dp"
+                        android:layout_height="match_parent">
                     <ImageView
                         android:id="@+id/itemImage"
                         android:src="@mipmap/item7"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
-                   <TextView
-                        android:id="@+id/off"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_20_off"
-                        android:background="@drawable/gradient"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/off"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="@string/_20_off"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:background="@drawable/off_corners"
+                            android:visibility="gone"/>
+                    </androidx.cardview.widget.CardView>
 
                 </FrameLayout>
 
                 <TextView
                     android:id="@+id/offer"
-                    android:text="offer"
+                    android:text="@string/offer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/gradient"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="#83C338"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     android:visibility="gone" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -71,7 +80,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/darker_gray"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
                 <TextView
                     android:id="@+id/itemName"
@@ -80,7 +89,7 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
                 <LinearLayout
                     android:id="@+id/ratingLayout"
@@ -109,9 +118,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:textSize="10dp"
+                        android:textSize="10sp"
                         android:textColor="@android:color/darker_gray"
-                        android:text="14000 ratings"
+                        android:text="@string/_14000_ratings"
                         android:layout_marginStart="5dp" />
                 </LinearLayout>
 

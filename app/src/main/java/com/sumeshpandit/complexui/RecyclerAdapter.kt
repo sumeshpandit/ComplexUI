@@ -75,11 +75,13 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
 
         val off=data[position].off
         val offText="${off}% off"
+
         if(off!=0) {
             holder.offText.visibility = View.VISIBLE
             holder.originalPrice.visibility = View.VISIBLE
+            holder.offText.text = offText
         }
-        holder.offText.text = offText
+
 
         holder.company.text= data[position].company
 
