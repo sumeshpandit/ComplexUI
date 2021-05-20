@@ -38,7 +38,8 @@
                         android:text="20% off"
                         android:background="#76A817"
                         android:paddingLeft="10dp"
-                        android:paddingRight="10dp"/>
+                        android:paddingRight="10dp"
+                        android:visibility="gone"/>
 
                 </FrameLayout>
 
@@ -51,7 +52,8 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:layout_marginTop="10dp"
-                    android:gravity="center_horizontal" />
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"/>
             </LinearLayout>
 
             <LinearLayout
@@ -156,11 +158,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="@string/add"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="20dp"
                     android:layout_marginEnd="20dp"
-                    android:backgroundTint="@android:color/holo_red_dark" />
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="@android:color/holo_red_light"
+                    android:text="@string/add"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
         </LinearLayout>

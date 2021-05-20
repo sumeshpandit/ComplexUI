@@ -1,10 +1,13 @@
 package com.sumeshpandit.complexui
 
 import android.content.ContentValues.TAG
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +21,11 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
     init {
         data.add(GroceryItem(R.mipmap.item1, "Super sale", 10,"BB ROYALE","Tomato- Hybrid","1kg",100,3,234))
         data.add(GroceryItem(R.mipmap.item2, "Super sale", 12,"TATA","Onion","500g",343,5,34))
-        data.add(GroceryItem(R.mipmap.item3, "Super sale", 23,"AASHIRWAD","potato","2kg",234,2,125))
-        data.add(GroceryItem(R.mipmap.item4, "super sale", 41,"FORTUNE","Peas","10kg",231,3,923))
-        data.add(GroceryItem(R.mipmap.item5, "super sale", 16,"EMAMI","Apple","1kg",201,4,87))
-        data.add(GroceryItem(R.mipmap.item6, "super sale", 17,"Rajdhani","Milk","1.5kg",534,5,453))
-        data.add(GroceryItem(R.mipmap.item7, "super sale", 65,"Fresho","Grapes","5kg",199,2,32))
+        data.add(GroceryItem(R.mipmap.item3, "", 23,"AASHIRWAD","potato","2kg",234,2,125))
+        data.add(GroceryItem(R.mipmap.item4, "", 41,"FORTUNE","Peas","10kg",231,3,923))
+        data.add(GroceryItem(R.mipmap.item5, "super sale", 0,"EMAMI","Apple","1kg",201,4,87))
+        data.add(GroceryItem(R.mipmap.item6, "", 17,"Rajdhani","Milk","1.5kg",534,5,453))
+        data.add(GroceryItem(R.mipmap.item7, "super sale", 0,"Fresho","Grapes","5kg",199,2,32))
     }
 
     inner class ViewHolder(binding: ItemBinding):RecyclerView.ViewHolder(binding.root) {
@@ -36,6 +39,21 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
         val itemName: TextView= binding.itemName
         val star: TextView= binding.stars
         val rating: TextView= binding.rating
+        private val addButton:Button= binding.addButton
+        init {
+            addButton.setOnClickListener {
+                if(addButton.text=="Delete"){
+                    addButton.setText(R.string.add)
+                    addButton.setTextColor(Color.WHITE)
+                    addButton.setBackgroundColor(Color.argb(1,255,68,68))
+                }
+                else {
+                    addButton.setText(R.string.delete)
+                    addButton.setBackgroundColor(Color.GREEN)
+                    addButton.setTextColor(Color.BLACK)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,23 +64,40 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.itemImage.setImageResource(data[position].itemImageView)
-        holder.offer.text=data[position].offer
-        holder.offText.text= "${data[position].off}% off"
+
+        val offer=data[position].offer
+        if(offer!="")
+            holder.offer.visibility=View.VISIBLE
+        holder.offer.text=offer
+
+        val off=data[position].off
+        val offText="${off}% off"
+        if(off!=0)
+            holder.offText.visibility=View.VISIBLE
+        holder.offText.text = offText
+
         holder.company.text= data[position].company
+
         holder.size.text= data[position].itemSize
+
         val discountedPrice=((data[position].price)*(100-data[position].off))/100
-        holder.price.text= "Rs $discountedPrice"
-        holder.originalPrice.text="Rs ${data[position].price}"
+        val discountedPriceFinal="Rs $discountedPrice"
+        val originalPriceFinal="Rs ${data[position].price}"
+        holder.price.text= discountedPriceFinal
+        holder.originalPrice.text=originalPriceFinal
         holder.originalPrice.paintFlags=Paint.STRIKE_THRU_TEXT_FLAG
+
         holder.itemName.text=data[position].itemName
+
         holder.star.text=data[position].star.toString()
         val rating=data[position].rating
-        holder.rating.text="$rating Ratings"
+        val ratingFinal="$rating Ratings"
+        holder.rating.text=ratingFinal
     }
 
     override fun getItemCount(): Int {
-        Log.e(TAG, "getItemCount: ${data.size}", )
         return data.size
     }
 
