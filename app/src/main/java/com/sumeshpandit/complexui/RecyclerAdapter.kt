@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sumeshpandit.complexui.databinding.ItemBinding
@@ -22,7 +23,7 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
         data.add(GroceryItem(R.mipmap.item3, "", 23,"AASHIRWAD","potato","2kg",234,2,125))
         data.add(GroceryItem(R.mipmap.item4, "", 41,"FORTUNE","Peas","10kg",231,3,923))
         data.add(GroceryItem(R.mipmap.item5, "super sale", 0,"EMAMI","Apple","1kg",201,4,87))
-        data.add(GroceryItem(R.mipmap.item6, "", 17,"Rajdhani","Milk","1.5kg",534,5,453))
+        data.add(GroceryItem(R.mipmap.item6, "", 17,"Rajdhani","Milk","1.5kg",534,5,0))
         data.add(GroceryItem(R.mipmap.item7, "super sale", 0,"Fresho","Grapes","5kg",199,2,32))
     }
 
@@ -37,6 +38,7 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
         val itemName: TextView= binding.itemName
         val star: TextView= binding.stars
         val rating: TextView= binding.rating
+        var ratingLayout=binding.ratingLayout
         private val addButton:Button= binding.addButton
         init {
             addButton.setOnClickListener {
@@ -72,8 +74,10 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
 
         val off=data[position].off
         val offText="${off}% off"
-        if(off!=0)
-            holder.offText.visibility=View.VISIBLE
+        if(off!=0) {
+            holder.offText.visibility = View.VISIBLE
+            holder.originalPrice.visibility = View.VISIBLE
+        }
         holder.offText.text = offText
 
         holder.company.text= data[position].company
@@ -93,6 +97,8 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
         val rating=data[position].rating
         val ratingFinal="$rating Ratings"
         holder.rating.text=ratingFinal
+        if(rating!=0)
+            holder.ratingLayout.visibility=LinearLayout.VISIBLE
     }
 
     override fun getItemCount(): Int {
