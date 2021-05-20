@@ -27,15 +27,14 @@
 
                     <ImageView
                         android:id="@+id/itemImage"
+                        android:src="@mipmap/item7"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:srcCompat="@mipmap/item7"/>
-
-                    <TextView
+                        android:layout_height="match_parent"/>
+                   <TextView
                         android:id="@+id/off"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20% off"
+                        android:text="@string/_20_off"
                         android:background="@drawable/gradient"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
