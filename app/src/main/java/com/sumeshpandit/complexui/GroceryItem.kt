@@ -9,5 +9,6 @@ data class GroceryItem(
     val itemSize: String,
     val price: Int,
     val star: Int,
-    val rating: Int
+    val rating: Int,
+    var isAdded:Boolean=false
 )

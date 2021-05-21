@@ -1,12 +1,10 @@
 package com.sumeshpandit.complexui
 
-import android.content.ContentValues.TAG
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sumeshpandit.complexui.databinding.ActivityMainBinding
@@ -20,6 +18,7 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.AddButtonListener {
         binding.recyclerView.layoutManager= LinearLayoutManager(this)
         binding.recyclerView.adapter=RecyclerAdapter(data,this@MainActivity)
     }
+
     init {
         data.add(GroceryItem(R.mipmap.item1, "Super sale", 10,"BB ROYALE","Tomato- Hybrid","1kg",100,3,234))
         data.add(GroceryItem(R.mipmap.item2, "Super sale", 12,"TATA","Onion","500g",343,5,34))
@@ -44,22 +43,21 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.AddButtonListener {
 
     }
 
-    override fun onClick(addButton:Button) {
-        Log.e(TAG, "onClick: tttttttt")
-        Toast.makeText(this@MainActivity,"clicked", Toast.LENGTH_LONG).show()
+    override fun onClick(position:Int, addButton:Button) {
+        Toast.makeText(this@MainActivity,"clicked", Toast.LENGTH_SHORT).show()
+
         when (addButton.text) {
             "Delete" -> {
                 addButton.setText(R.string.add)
                 addButton.setTextColor(Color.WHITE)
                 addButton.setBackgroundColor(Color.argb(1,255,68,68))
+                data[position].isAdded=false
             }
             "Add" -> {
                 addButton.setText(R.string.delete)
                 addButton.setBackgroundColor(Color.GREEN)
                 addButton.setTextColor(Color.BLACK)
-            }
-            else -> {
-                addButton.text="error"
+                data[position].isAdded=true
             }
         }
     }

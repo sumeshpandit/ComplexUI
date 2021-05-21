@@ -30,7 +30,8 @@ class RecyclerAdapter(private val data: MutableList<GroceryItem>, val customClic
 
         init {
             addButton.setOnClickListener {
-                customClickListener.onClick(binding.addButton)
+                val position= adapterPosition
+                customClickListener.onClick(position, binding.addButton)
             }
         }
     }
@@ -95,24 +96,19 @@ class RecyclerAdapter(private val data: MutableList<GroceryItem>, val customClic
         else
             holder.ratingLayout.visibility=LinearLayout.GONE
 
-//        val addButton=holder.addButton
-//        addButton.setOnClickListener {
-//            when (addButton.text) {
-//                "Delete" -> {
-//                    addButton.setText(R.string.add)
-//                    addButton.setTextColor(Color.WHITE)
-//                    addButton.setBackgroundColor(Color.argb(1,255,68,68))
-//                }
-//                "Add" -> {
-//                    addButton.setText(R.string.delete)
-//                    addButton.setBackgroundColor(Color.GREEN)
-//                    addButton.setTextColor(Color.BLACK)
-//                }
-//                else -> {
-//                    addButton.text="error"
-//                }
-//            }
-//        }
+        val isAdded=data[position].isAdded
+        val addButton=holder.addButton
+
+        if(!isAdded){
+            addButton.setText(R.string.add)
+            addButton.setTextColor(Color.WHITE)
+            addButton.setBackgroundColor(Color.argb(1,255,68,68))
+        }
+        else{
+            addButton.setText(R.string.delete)
+            addButton.setBackgroundColor(Color.GREEN)
+            addButton.setTextColor(Color.BLACK)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -120,7 +116,7 @@ class RecyclerAdapter(private val data: MutableList<GroceryItem>, val customClic
     }
 
     interface AddButtonListener{
-        fun onClick(addButton:Button)
+        fun onClick(position: Int, addButton:Button)
     }
 
 }
