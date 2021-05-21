@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sumeshpandit.complexui.databinding.ItemBinding
 
-class RecyclerAdapter(private val data: MutableList<GroceryItem>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
+class RecyclerAdapter(private val data: MutableList<GroceryItem>, val customClickListener: AddButtonListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
 {
     inner class ViewHolder(binding: ItemBinding):RecyclerView.ViewHolder(binding.root) {
         val itemImage:ImageView= binding.itemImage
@@ -28,6 +28,11 @@ class RecyclerAdapter(private val data: MutableList<GroceryItem>): RecyclerView.
         var ratingLayout=binding.ratingLayout
         val addButton:Button= binding.addButton
 
+        init {
+            addButton.setOnClickListener {
+                customClickListener.onClick(binding.addButton)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -90,28 +95,32 @@ class RecyclerAdapter(private val data: MutableList<GroceryItem>): RecyclerView.
         else
             holder.ratingLayout.visibility=LinearLayout.GONE
 
-        val addButton=holder.addButton
-        addButton.setOnClickListener {
-            when (addButton.text) {
-                "Delete" -> {
-                    addButton.setText(R.string.add)
-                    addButton.setTextColor(Color.WHITE)
-                    addButton.setBackgroundColor(Color.argb(1,255,68,68))
-                }
-                "Add" -> {
-                    addButton.setText(R.string.delete)
-                    addButton.setBackgroundColor(Color.GREEN)
-                    addButton.setTextColor(Color.BLACK)
-                }
-                else -> {
-                    addButton.text="error"
-                }
-            }
-        }
+//        val addButton=holder.addButton
+//        addButton.setOnClickListener {
+//            when (addButton.text) {
+//                "Delete" -> {
+//                    addButton.setText(R.string.add)
+//                    addButton.setTextColor(Color.WHITE)
+//                    addButton.setBackgroundColor(Color.argb(1,255,68,68))
+//                }
+//                "Add" -> {
+//                    addButton.setText(R.string.delete)
+//                    addButton.setBackgroundColor(Color.GREEN)
+//                    addButton.setTextColor(Color.BLACK)
+//                }
+//                else -> {
+//                    addButton.text="error"
+//                }
+//            }
+//        }
     }
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    interface AddButtonListener{
+        fun onClick(addButton:Button)
     }
 
 }

@@ -1,19 +1,24 @@
 package com.sumeshpandit.complexui
 
+import android.content.ContentValues.TAG
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sumeshpandit.complexui.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    val data:MutableList<GroceryItem> = mutableListOf()
+class MainActivity : AppCompatActivity(), RecyclerAdapter.AddButtonListener {
+    private val data:MutableList<GroceryItem> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding= DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
         binding.recyclerView.layoutManager= LinearLayoutManager(this)
-        binding.recyclerView.adapter=RecyclerAdapter(data)
+        binding.recyclerView.adapter=RecyclerAdapter(data,this@MainActivity)
     }
     init {
         data.add(GroceryItem(R.mipmap.item1, "Super sale", 10,"BB ROYALE","Tomato- Hybrid","1kg",100,3,234))
@@ -37,5 +42,25 @@ class MainActivity : AppCompatActivity() {
         data.add(GroceryItem(R.mipmap.item19, "super sale", 45,"Adobe","Sprite","200gm",3199,6,352))
         data.add(GroceryItem(R.mipmap.item20, "super sale", 12,"Cisco","AC","50kg",1979,4,332))
 
+    }
+
+    override fun onClick(addButton:Button) {
+        Log.e(TAG, "onClick: tttttttt")
+        Toast.makeText(this@MainActivity,"clicked", Toast.LENGTH_LONG).show()
+        when (addButton.text) {
+            "Delete" -> {
+                addButton.setText(R.string.add)
+                addButton.setTextColor(Color.WHITE)
+                addButton.setBackgroundColor(Color.argb(1,255,68,68))
+            }
+            "Add" -> {
+                addButton.setText(R.string.delete)
+                addButton.setBackgroundColor(Color.GREEN)
+                addButton.setTextColor(Color.BLACK)
+            }
+            else -> {
+                addButton.text="error"
+            }
+        }
     }
 }
