@@ -25,7 +25,6 @@ class RecyclerAdapter(private val data: MutableList<GroceryItem>, val customClic
         val itemName: TextView= binding.itemName
         val star: TextView= binding.stars
         val rating: TextView= binding.rating
-        var ratingLayout=binding.ratingLayout
         val addButton:Button= binding.addButton
 
         init {
@@ -91,10 +90,14 @@ class RecyclerAdapter(private val data: MutableList<GroceryItem>, val customClic
         val rating=data[position].rating
         val ratingFinal="$rating Ratings"
         holder.rating.text=ratingFinal
-        if(rating!=0)
-            holder.ratingLayout.visibility=LinearLayout.VISIBLE
-        else
-            holder.ratingLayout.visibility=LinearLayout.GONE
+        if(rating!=0) {
+            holder.star.visibility = View.VISIBLE
+            holder.rating.visibility = View.VISIBLE
+        }
+        else {
+            holder.star.visibility=View.INVISIBLE
+            holder.rating.visibility=View.INVISIBLE
+        }
 
         val isAdded=data[position].isAdded
         val addButton=holder.addButton
